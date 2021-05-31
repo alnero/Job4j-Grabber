@@ -1,0 +1,20 @@
+# Java in use
+language: java
+jdk: openjdk12
+
+# Regular user
+sudo: false
+
+env:
+  global:
+    - CODECOV_TOKEN="6f7b016b-1452-4b1a-be74-0346d34b079f"
+
+# Collect JaCoCo statistics via https://codecov.io/
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+# If failure inform via e-mail
+notifications:
+  email:
+    on_success: never # default: change
+    on_failure: always # default: always
