@@ -13,7 +13,7 @@ public class Post {
     /** Post contents. */
     private String description;
     /** Post creation date & time. */
-    private LocalDateTime localDateTime;
+    private LocalDateTime created;
 
     public int getId() {
         return id;
@@ -47,12 +47,12 @@ public class Post {
         this.description = description;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     @Override
@@ -68,11 +68,21 @@ public class Post {
                 && Objects.equals(getTitle(), post.getTitle())
                 && Objects.equals(getLink(), post.getLink())
                 && Objects.equals(getDescription(), post.getDescription())
-                && Objects.equals(getLocalDateTime(), post.getLocalDateTime());
+                && Objects.equals(getCreated(), post.getCreated());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getLink(), getDescription(), getLocalDateTime());
+        return Objects.hash(getId(), getTitle(), getLink(), getDescription(), getCreated());
+    }
+
+    @Override
+    public String toString() {
+        return "Post{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", link='" + link + '\''
+                + ", description='" + description + '\''
+                + ", created=" + created + '}';
     }
 }
