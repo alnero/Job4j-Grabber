@@ -1,5 +1,6 @@
 package alnero.job4j.grabber;
 
+import alnero.job4j.grabber.utils.SqlRuDateTimeParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,7 +13,7 @@ public class SqlRuParse {
         for (Element tableData : postNameCells) {
             Element tableRow = tableData.parent();
             Element postDateCell = tableRow.child(5);
-            System.out.println(postDateCell.text());
+            System.out.println(new SqlRuDateTimeParser().parse(postDateCell.text()));
         }
     }
 }
