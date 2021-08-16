@@ -8,6 +8,7 @@ import java.time.temporal.ChronoField;
 import java.util.Map;
 
 public class SqlRuDateTimeParser implements DateTimeParser {
+    /** Formatter months mapper. */
     private static final Map<Long, String> MONTHS = Map.ofEntries(
             Map.entry(1L, "янв"),
             Map.entry(2L, "фев"),
