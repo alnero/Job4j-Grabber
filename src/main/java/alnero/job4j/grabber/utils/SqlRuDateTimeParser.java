@@ -25,19 +25,22 @@ public class SqlRuDateTimeParser implements DateTimeParser {
 
     @Override
     public LocalDateTime parse(String parse) {
+        DateTimeFormatter todayYesterdayFormatter = new DateTimeFormatterBuilder()
+                .appendPattern("d ")
+                .appendText(ChronoField.MONTH_OF_YEAR, MONTHS)
+                .appendPattern(" yy")
+                .toFormatter();
         if (parse.startsWith("сегодня")) {
-            DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                    .appendPattern("d ")
-                    .appendText(ChronoField.MONTH_OF_YEAR, MONTHS)
-                    .appendPattern(" yy")
-                    .toFormatter();
-            parse = parse.replace("сегодня", LocalDate.now().format(formatter));
+            parse = parse.replace("сегодня", LocalDate.now().format(todayYesterdayFormatter));
         }
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+        if (parse.startsWith("вчера")) {
+            parse = parse.replace("вчера", LocalDate.now().minusDays(1).format(todayYesterdayFormatter));
+        }
+        DateTimeFormatter dateTimeFormatter = new DateTimeFormatterBuilder()
                 .appendPattern("d ")
                 .appendText(ChronoField.MONTH_OF_YEAR, MONTHS)
                 .appendPattern(" yy, HH:mm")
                 .toFormatter();
-        return LocalDateTime.parse(parse, formatter);
+        return LocalDateTime.parse(parse, dateTimeFormatter);
     }
 }
