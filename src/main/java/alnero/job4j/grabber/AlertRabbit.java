@@ -27,7 +27,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class AlertRabbit {
     public static void main(String[] args) {
         Properties rabbitProperties = getRabbitProperties();
-        String dbDriver = rabbitProperties.getProperty("db.driver");
+        String dbDriver = rabbitProperties.getProperty("jdbc.driver");
         String url = rabbitProperties.getProperty("url");
         String username = rabbitProperties.getProperty("username");
         String password = rabbitProperties.getProperty("password");
