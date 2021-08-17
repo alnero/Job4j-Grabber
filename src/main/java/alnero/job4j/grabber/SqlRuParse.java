@@ -45,7 +45,7 @@ public class SqlRuParse implements Parse {
             Elements postNameCells = doc.select(".postslisttopic");
             for (Element tableData : postNameCells) {
                 Element href = tableData.child(0);
-                Post post = detail(href.attr("href"));
+                Post post = this.detail(href.attr("href"));
                 posts.add(post);
             }
         });
